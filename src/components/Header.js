@@ -11,7 +11,10 @@ export class Header extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        this.props.createItem(this.state);
+        this.setState({
+            content: ''
+        })
 
     }
     render() {
@@ -23,9 +26,14 @@ export class Header extends Component {
              className="form-control" 
              id="user-input"
              onChange={this.handleChange}
+             value={this.state.content}
              ></input>
              <div className="input-group-append">
-               <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={this.handleSubmit}>Add</button>
+               <button className="btn btn-outline-secondary" 
+               type="button" 
+               id="button-addon2" 
+               onClick={this.handleSubmit}
+               >Add</button>
              </div>
              </form>
             </div>

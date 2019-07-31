@@ -6,7 +6,7 @@ import Items from './components/Items';
 class App extends React.Component{
   state = {
     todos: [
-      {id: 1, content: 'buy some milk'},
+      {id: 1, content: 'read a book'},
       {id:2, content: 'play fifa'}
     ] 
   }
@@ -19,15 +19,18 @@ class App extends React.Component{
      todos
    })
   }
-  createItem (){
-    const itemValue = document.getElementById('user-input').nodeValue;
-    
+  createItem = (todo) => {
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState({
+      todos
+    })
   }
 
 render(){
   return (
     <div className="App">
-     <Header />
+     <Header createItem={this.createItem}/>
      <Items todos={this.state.todos} deleteItem = {this.deleteItem}/>
     </div>
   );
