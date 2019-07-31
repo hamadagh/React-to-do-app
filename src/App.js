@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Items from './components/Items';
 
-function App() {
+class App extends React.Component{
+  state = {
+    todos: [
+      {id: 1, content: 'buy some milk'},
+      {id:2, content: 'play fifa'}
+    ] 
+  }
+
+  deleteItem = (id) => {
+   const todos = this.state.todos.filter(todo => {
+     return todo.id !== id
+   });
+   this.setState({
+     todos
+   })
+  }
+  createItem (){
+    const itemValue = document.getElementById('user-input').nodeValue;
+  }
+
+render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Header />
+     <Items todos={this.state.todos} deleteItem = {this.deleteItem}/>
     </div>
   );
+}
 }
 
 export default App;
