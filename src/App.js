@@ -21,6 +21,7 @@ class App extends React.Component{
   }
   createItem (){
     const itemValue = document.getElementById('user-input').nodeValue;
+    
   }
 
 render(){

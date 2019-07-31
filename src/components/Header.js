@@ -1,15 +1,33 @@
 import React, { Component } from 'react'
 
 export class Header extends Component {
+    state = {
+        content: ''
+    }
+    handleChange = (e) => {
+        this.setState({
+            content: e.target.value
+        })
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+
+    }
     render() {
         return (
             <div className="App mx-auto mb-5">
-             <div className="mx-auto input-group mt-5" style={{width: 400}}>
-             <input type="text" placeholder="To do" className="form-control" id="user-input"></input>
+             <form className="mx-auto input-group mt-5" style={{width: 400}} onSubmit={this.handleSubmit}>
+             <input type="text" 
+             placeholder="To do" 
+             className="form-control" 
+             id="user-input"
+             onChange={this.handleChange}
+             ></input>
              <div className="input-group-append">
-               <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+               <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={this.handleSubmit}>Add</button>
              </div>
-             </div>
+             </form>
             </div>
         )
     }
